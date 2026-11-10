@@ -1,0 +1,53 @@
+@if (showForm || selectedTodo) {
+  <app-todo-form [existingTodo]="selectedTodo" 
+  (todoSaved)="onTodoSaved()"
+  (todoCancelled)="handleCancel()"></app-todo-form>
+
+  <hr class="form-divider" />
+} @else {
+  <button (click)="showCreateForm()" class="add-todo-btn">Add New Todo</button>
+}
+
+@if (errorMessage) {
+  <p class="error-message">{{ errorMessage }}</p>
+}
+
+@if (isLoading) {
+  <p>Loading...</p>
+}
+
+@if (!isLoading && todos.length === 0 && !errorMessage) {
+  <p>No todos yet</p>
+}
+@if (todos.length > 0) {
+  <ul class="todo-list">
+    @for (todo of todos; track todo.id) {
+      <li class="todo-item" [class.deleting]="deletingId === todo.id">
+        <input 
+          type="checkbox" 
+          [checked]="todo.isComplete" 
+          (change)="toggleComplete(todo)" 
+        />
+
+        <div class="todo-content">
+          <span [class.completed]="todo.isComplete" class="todo-title">
+            {{ todo.title }}
+          </span>
+
+          @if (todo.description) {
+            <p class="todo-description">{{ todo.description }}</p>
+          }
+
+          <span class="priority-label">
+            ({{ getPriorityLabel(todo.priority) }})
+          </span>
+        </div>
+
+        <div class="todo-actions">
+          <button (click)="onEdit(todo)">Edit</button>
+          <button (click)="deleteTodo(todo.id)">Delete</button>
+        </div>
+      </li>
+    }
+  </ul>
+}

@@ -1,0 +1,42 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+
+input, textarea, select {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+button {
+  padding: 10px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: blue;
+  color: white;
+  border: none;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button[type="button"] {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+}
