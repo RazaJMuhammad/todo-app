@@ -1,0 +1,11 @@
+USE TodoDB;
+GO
+
+CREATE OR ALTER PROCEDURE DeleteTodo
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Todos
+    WHERE Id = @Id;
+END
+GO

@@ -1,0 +1,3 @@
+IF DB_ID('TodoDB') IS NULL
+    CREATE DATABASE TodoDB;
+GO
